@@ -1,0 +1,160 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Example Service API",
+    "version": "1.0"
+  },
+  "tags": [
+    {
+      "name": "Example Service"
+    }
+  ],
+  "basePath": "/service/v1",
+  "paths": {
+    "/person": {
+      "post": {
+        "tags": [
+          "person"
+        ],
+        "summary": "Create person",
+        "operationId": "createPerson",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "required": true,
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/Person"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success.  Return created person.",
+            "schema": {
+              "$ref": "#/definitions/Person"
+            }
+          },
+          "403": {
+            "description": "Not authorized"
+          }
+        }
+      }
+    },
+    "/{subject}/interactions": {
+      "get": {
+        "tags": [
+          "interaction"
+        ],
+        "description": "",
+        "operationId": "getInteractions",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "subject",
+            "required": true,
+            "in": "path",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/Response"
+            }
+          },
+          "404": {
+            "description": "Subject not found",
+            "schema": {
+              "$ref": "#/definitions/Response"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Person": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "idType": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "firstName": {
+          "type": "string"
+        },
+        "middleName": {
+          "type": "string"
+        },
+        "source": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "subjects": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "attributes": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "relationships": {
+          "$ref": "#/definitions/Relationships"
+        }
+      }
+    },
+    "Relationships": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    },
+    "Response": {
+      "type": "object",
+      "properties": {
+        "matched": {
+          "type": "boolean"
+        },
+        "detail": {
+          "type": "string"
+        },
+        "interactions": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/Interactions"
+          }
+        }
+      }
+    },
+    "Interactions": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

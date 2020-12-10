@@ -1,0 +1,11 @@
+target/
+generated-client/
+
+# IDE files
+.idea
+*.iml
+.classpath
+.project
+.settings
+
+.DS_Store

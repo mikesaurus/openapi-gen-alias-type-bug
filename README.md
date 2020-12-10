@@ -5,10 +5,10 @@ This is an example project to demonstrate a openapi-generator bug that causes a 
 setting the `generateAliasAsModel` option to `true`.
 
 ### Expected Behavior
-When generating client code with openapi-generator and the `generateAliasAsModel` option set to `true`, model properties 
-of alias model types are initialized to null or to a new instance of the alias object type and the code compiles.
+When generating client code with openapi-generator and the `generateAliasAsModel` option set to `true`, standard model 
+fields of alias object types are initialized to null or to a new instance of the alias object type, and the code compiles.
 
-Expected code:
+For example:
 ```java
 public class StandardModelClass {
   private MapAliasModelClass mapAliasModel = null;
@@ -22,10 +22,10 @@ public class StandardModelClass {
 ```
 
 ### Actual Behavior
-When generating client code with openapi-generator and the `generateAliasAsModel` option set to `true`, model properties 
-of alias types are initialized to a new instance of the base object type, not the alias object type, and compilation fails.
+When generating client code with openapi-generator and the `generateAliasAsModel` option set to `true`, standard model 
+fields of alias object types are initialized to a new instance of the base object type, not the alias object type, and compilation fails.
 
-Actual code:
+For example:
 ```java
 public class StandardModelClass {
   private MapAliasModelClass mapAliasModel = new HashMap<String, String>();

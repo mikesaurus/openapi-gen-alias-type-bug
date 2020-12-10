@@ -39,5 +39,5 @@ local jenv version if using jenv).
 To build, run `mvn install` from the project root. This will result in the following compilation error:
 
 ```
-openapi-gen-alias-type-bug/generated-client/src/main/java/org/example/service/v1/model/Person.java:[76,43] incompatible types: java.util.HashMap<java.lang.String,java.util.List<java.lang.String>> cannot be converted to org.example.service.v1.model.ContextHeaders
+org/example/service/v1/model/Person.java:[76,43] incompatible types: java.util.HashMap<java.lang.String,java.util.List<java.lang.String>> cannot be converted to org.example.service.v1.model.Relationships
 ```
